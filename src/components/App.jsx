@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, deleteContact } from '../redux/slices/contacts.slice';
 import { setFilter } from '../redux/slices/filters.slice';
-import styles from "./Contacts/Contacts.module.scss";
+import styles from "./Contacts.module.scss";
 
 const AddContactForm = () => {
   const dispatch = useDispatch();
