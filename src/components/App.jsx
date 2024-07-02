@@ -5,8 +5,9 @@ import { addContact, deleteContact } from '../redux/slices/contacts.slice';
 import { setFilter } from '../redux/slices/filters.slice';
 import styles from "./Contacts.module.scss";
 
-const AddContactForm = ({ contacts }) => {
+const AddContactForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
   const [name, setName] = React.useState('');
   const [number, setNumber] = React.useState('');
 
@@ -66,8 +67,10 @@ AddContactForm.propTypes = {
   ).isRequired,
 };
 
-const ContactList = ({ contacts, filter }) => {
+const ContactList = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+  const filter = useSelector((state) => state.filter);
 
   const handleFilterChange = (e) => {
     dispatch(setFilter(e.currentTarget.value));
@@ -114,7 +117,7 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Phonebook</h1>
+      <h1 className={styles.title}>Phone Book</h1>
       <AddContactForm contacts={contacts} />
       <ContactList contacts={contacts} filter={filter} />
     </div>
