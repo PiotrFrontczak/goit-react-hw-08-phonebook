@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addContact, deleteContact } from '../redux/slices/contacts.slice';
 import { setFilter } from '../redux/slices/filters.slice';
 import styles from "./Contacts.module.scss";
 
-const AddContactForm = () => {
+const AddContactForm = ({ contacts }) => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
   const [name, setName] = React.useState('');
   const [number, setNumber] = React.useState('');
 
@@ -56,10 +56,18 @@ const AddContactForm = () => {
   );
 };
 
-const ContactList = () => {
+AddContactForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+const ContactList = ({ contacts, filter }) => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
-  const filter = useSelector((state) => state.filter);
 
   const handleFilterChange = (e) => {
     dispatch(setFilter(e.currentTarget.value));
@@ -89,12 +97,26 @@ const ContactList = () => {
   );
 };
 
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  filter: PropTypes.string.isRequired,
+};
+
 const App = () => {
+  const contacts = useSelector((state) => state.contacts);
+  const filter = useSelector((state) => state.filter);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Phone Book</h1>
-      <AddContactForm />
-      <ContactList />
+      <AddContactForm contacts={contacts} />
+      <ContactList contacts={contacts} filter={filter} />
     </div>
   );
 };
