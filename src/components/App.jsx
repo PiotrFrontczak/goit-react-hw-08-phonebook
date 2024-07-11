@@ -4,7 +4,70 @@ import { fetchContacts, deleteContact } from '../redux/slices/contactsSlice';
 import ContactList from './ContactList';
 import AddContactForm from './AddContactForm';
 import styles from '../components/Contacts.module.scss';
+import PropTypes from 'prop-types';
 
+
+const AddContact = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+  const [name, setName] = React.useState('');
+  const [number, setNumber] = React.useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.currentTarget;
+    if (name === 'name') setName(value);
+    if (name === 'number') setNumber(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (contacts.some(contact => contact.name === name)) {
+      alert("Contact with this name already exists.");
+      return;
+    }
+
+    dispatch(addContact(name, number));
+    setName('');
+    setNumber('');
+  };
+
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        pattern="^[A-Za-z]+(\s[A-Za-z]+){0,2}$"
+        required
+        value={name}
+        onChange={handleChange}
+        className={styles.input}
+      />
+      <label>Phone number</label>
+      <input
+        type="tel"
+        name="number"
+        pattern="^\d{9}$"
+        required
+        value={number}
+        onChange={handleChange}
+        className={styles.input}
+      />
+      <button type="submit" className={styles.button}>Add contact</button>
+    </form>
+  );
+};
+
+AddContactForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 
 const App = () => {
   const dispatch = useDispatch();
