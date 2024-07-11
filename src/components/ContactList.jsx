@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts, deleteContact } from '../redux/slices/contactsSlice';
@@ -9,10 +10,6 @@ const ContactList = () => {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log('Contacts state:', contacts);
-  }, [contacts]);
 
   const handleDelete = (id) => {
     dispatch(deleteContact(id));
