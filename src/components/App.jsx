@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts, deleteContact } from '../redux/slices/contactsSlice';
 import ContactList from './ContactList';
 import AddContactForm from './AddContactForm';
+import styles from '../components/Contacts.module.scss';
+
 
 const App = () => {
   const dispatch = useDispatch();

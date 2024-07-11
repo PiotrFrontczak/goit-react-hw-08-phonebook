@@ -1,7 +1,7 @@
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts, deleteContact } from '../redux/slices/contactsSlice';
+import styles from './Contacts.module.scss';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -11,10 +11,6 @@ const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(deleteContact(id));
-  };
-
   if (status === 'loading') {
     return <div>Loading...</div>;
   }
@@ -23,17 +19,12 @@ const ContactList = () => {
     return <div>Error: {error}</div>;
   }
 
-  if (!Array.isArray(contacts)) {
-    console.error('Contacts is not an array:', contacts);
-    return <div>Error: Contacts is not an array</div>;
-  }
-
   return (
-    <ul>
+    <ul className={styles.list}>
       {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.phone}
-          <button onClick={() => handleDelete(contact.id)}>Delete</button>
+        <li key={contact.id} className={styles.listItem}>
+          <span>{contact.name}: {contact.phone}</span>
+          <button onClick={() => dispatch(deleteContact(contact.id))} className={styles.deleteButton}>Delete</button>
         </li>
       ))}
     </ul>
