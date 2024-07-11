@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL = 'https://66900896c0a7969efd9ab272.mockapi.io/contacts';
+const baseURL = 'https://66900896c0a7969efd9ab271.mockapi.io/contacts';
 
-// Async thunks for API interactions
 export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
   const response = await axios.get(baseURL);
+  console.log('fetchContacts response:', response.data); // Dodaj tę linię, aby zweryfikować strukturę danych
   return response.data;
 });
 

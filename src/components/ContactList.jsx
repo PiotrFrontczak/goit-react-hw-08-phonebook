@@ -22,9 +22,14 @@ const ContactList = () => {
     return <div>Error: {error}</div>;
   }
 
+  if (!Array.isArray(contacts)) {
+    console.error('Contacts is not an array:', contacts);
+    return <div>Error: Contacts is not an array</div>;
+  }
+
   return (
     <ul>
-      {Array.isArray(contacts) && contacts.map(contact => (
+      {contacts.map(contact => (
         <li key={contact.id}>
           {contact.name}: {contact.phone}
           <button onClick={() => handleDelete(contact.id)}>Delete</button>
