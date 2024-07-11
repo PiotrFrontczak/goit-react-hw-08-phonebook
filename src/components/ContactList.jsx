@@ -24,7 +24,7 @@ const ContactList = () => {
 
   return (
     <ul>
-      {contacts.map(contact => (
+      {Array.isArray(contacts) && contacts.map(contact => (
         <li key={contact.id}>
           {contact.name}: {contact.phone}
           <button onClick={() => handleDelete(contact.id)}>Delete</button>
