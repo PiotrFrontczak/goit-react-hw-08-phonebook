@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
+    "axios": "^1.7.2",
     "gh-pages": "^6.1.1",
     "nanoid": "^5.0.7",
     "react": "^18.3.1",
@@ -33,5 +34,11 @@
     "prettier": "^3.2.5",
     "sass": "^1.77.2",
     "vite": "^5.2.0"
+  },
+  "contacts": {
+    "id": "Object ID",
+    "createdAt": "Faker.js Recent",
+    "name": "Faker.js Find name",
+    "phone": "Faker.js Phone number format"
   }
 }
