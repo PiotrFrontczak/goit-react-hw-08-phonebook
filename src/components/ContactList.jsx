@@ -10,6 +10,10 @@ const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log('Contacts state:', contacts);
+  }, [contacts]);
+
   const handleDelete = (id) => {
     dispatch(deleteContact(id));
   };

@@ -5,7 +5,7 @@ const baseURL = 'https://66900896c0a7969efd9ab271.mockapi.io/contacts';
 
 export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
   const response = await axios.get(baseURL);
-  console.log('fetchContacts response:', response.data); // Dodaj tę linię, aby zweryfikować strukturę danych
+  console.log('fetchContacts response:', response.data);
   return response.data;
 });
 
