@@ -4,7 +4,7 @@ import { Box, Typography, Button } from '@mui/material';
 
 const UserMenu = () => {
   const navigate = useNavigate();
-  const email = 'mango@mail.com';
+  const email = 'mango@gmail.com';
 
   const handleLogout = () => {
     localStorage.removeItem('token');
