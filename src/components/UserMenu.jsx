@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Box, Typography, Button } from '@mui/material';
 
 const UserMenu = () => {
   const navigate = useNavigate();
@@ -11,10 +12,10 @@ const UserMenu = () => {
   };
 
   return (
-    <div>
-      <p>{email}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <Box display="flex" alignItems="center" sx={{ mt: 2, mb: 2 }}>
+      <Typography variant="body1" sx={{ mr: 2 }}>{email}</Typography>
+      <Button variant="contained" color="secondary" onClick={handleLogout}>Logout</Button>
+    </Box>
   );
 };
 
