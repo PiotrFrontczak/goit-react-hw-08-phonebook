@@ -12,18 +12,18 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1976d2',
+      main: '#1976d2', // Blue
     },
     secondary: {
-      main: '#f50057',
+      main: '#f50057', // Pink
     },
     background: {
-      default: '#f3f4f6', 
-      paper: '#ffffff',
+      default: '#f3f4f6', // Light grey background
+      paper: '#ffffff', // White paper background
     },
     text: {
-      primary: '#333333',
-      secondary: '#555555',
+      primary: '#333333', // Dark text
+      secondary: '#555555', // Lighter dark text
     },
   },
   typography: {
@@ -34,7 +34,7 @@ const theme = createTheme({
 const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Router>
+    <Router basename="/goit-react-hw-08-phonebook">
       <div>
         <Navigation />
         <UserMenu />
