@@ -1,14 +1,24 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import store from './redux/slices/store';
-import App from './components/App';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import Contacts from './components/Contacts';
+import Navigation from './components/Navigation';
+import UserMenu from './components/UserMenu';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
-
-root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+const App = () => (
+  <Router>
+    <div>
+      <Navigation />
+      <UserMenu />
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/contacts" element={<Contacts />} />
+      </Routes>
+    </div>
+  </Router>
 );
+
+ReactDOM.render(<App />, document.getElementById('root'));
