@@ -32,31 +32,6 @@ const AddContact = () => {
     setNumber('');
   };
 
-  return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <label>Name</label>
-      <input
-        type="text"
-        name="name"
-        pattern="^[A-Za-z]+(\s[A-Za-z]+){0,2}$"
-        required
-        value={name}
-        onChange={handleChange}
-        className={styles.input}
-      />
-      <label>Phone number</label>
-      <input
-        type="tel"
-        name="number"
-        pattern="^\d{9}$"
-        required
-        value={number}
-        onChange={handleChange}
-        className={styles.input}
-      />
-      <button type="submit" className={styles.button}>Add contact</button>
-    </form>
-  );
 };
 
 AddContactForm.propTypes = {
