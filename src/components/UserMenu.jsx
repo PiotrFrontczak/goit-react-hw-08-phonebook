@@ -4,7 +4,7 @@ import { Box, Typography, Button } from '@mui/material';
 
 const UserMenu = () => {
   const navigate = useNavigate();
-  const email = 'user@example.com'; // Replace this with the actual user email from context or state
+  const email = 'mango@mail.com';
 
   const handleLogout = () => {
     localStorage.removeItem('token');

@@ -10,20 +10,20 @@ import UserMenu from './components/UserMenu';
 
 const theme = createTheme({
   palette: {
-    mode: 'dark', // Change to 'light' if you prefer a light theme
+    mode: 'light',
     primary: {
-      main: '#90caf9', // Light blue
+      main: '#1976d2',
     },
     secondary: {
-      main: '#f48fb1', // Pink
+      main: '#f50057',
     },
     background: {
-      default: '#121212', // Dark background
-      paper: '#1e1e1e', // Dark paper background
+      default: '#f3f4f6', 
+      paper: '#ffffff',
     },
     text: {
-      primary: '#ffffff', // White text
-      secondary: '#b0bec5', // Light grey text
+      primary: '#333333',
+      secondary: '#555555',
     },
   },
   typography: {
