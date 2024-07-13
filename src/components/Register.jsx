@@ -12,13 +12,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = { name, email, password };
-    console.log('Sending user data:', userData);
+    console.log('Sending user data:', JSON.stringify(userData));
 
     try {
       const response = await axios.post('https://connections-api.herokuapp.com/users/signup', userData, {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
       console.log('Response:', response);
       if (response.status === 201) {

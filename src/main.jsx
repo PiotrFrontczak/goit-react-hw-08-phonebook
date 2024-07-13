@@ -15,14 +15,14 @@ const theme = createTheme({
       main: '#1976d2',
     },
     secondary: {
-      main: '#f50057', 
+      main: '#f50057',
     },
     background: {
-      default: '#f3f4f6', 
-      paper: '#ffffff', 
+      default: '#f3f4f6',
+      paper: '#ffffff',
     },
     text: {
-      primary: '#333333', 
+      primary: '#333333',
       secondary: '#555555',
     },
   },
@@ -34,11 +34,12 @@ const theme = createTheme({
 const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Router basename="/goit-react-hw-08-phonebook">
+    <Router>
       <div>
         <Navigation />
         <UserMenu />
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contacts" element={<Contacts />} />
