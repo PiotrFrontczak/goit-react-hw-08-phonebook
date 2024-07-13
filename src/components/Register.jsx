@@ -7,10 +7,18 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+
+    if (!name || !email || !password) {
+      setError('All fields are required.');
+      return;
+    }
+
     const userData = { name, email, password };
     console.log('Sending user data:', userData);
 
@@ -22,18 +30,15 @@ const Register = () => {
       });
       console.log('Response:', response);
       if (response.status === 201 || response.status === 200) {
-        // Optionally store the token if you need it for further requests
-        localStorage.setItem('token', response.data.token);
-        // Navigate to login or contacts page
         navigate('/login');
       }
     } catch (error) {
       if (error.response) {
         console.error('Full error response:', error.response);
-        alert('Registration failed: ' + (error.response.data.message || 'Unknown error'));
+        setError(error.response.data.message || 'Registration failed. Please try again.');
       } else {
         console.error('Error:', error.message);
-        alert('Registration failed: ' + error.message);
+        setError('An error occurred. Please try again.');
       }
     }
   };
@@ -83,6 +88,11 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && (
+            <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          )}
           <Button
             type="submit"
             fullWidth
