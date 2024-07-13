@@ -34,7 +34,7 @@ const theme = createTheme({
 const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Router>
+    <Router basename="/goit-react-hw-08-phonebook">
       <div>
         <Navigation />
         <UserMenu />
