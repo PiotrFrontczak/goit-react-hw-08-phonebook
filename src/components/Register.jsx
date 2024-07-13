@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Container, Typography, Box, Paper } from '@mui/material';
 
 const Register = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -11,10 +12,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://connections-api.herokuapp.com/users/signup', { email, password });
-      navigate('/login');
+      const response = await axios.post('https://connections-api.herokuapp.com/users/signup', { name, email, password });
+      if (response.status === 201) {
+        navigate('/login');
+      }
     } catch (error) {
       console.error(error);
+      alert('Registration failed: ' + error.response.data.message);
     }
   };
 
@@ -30,11 +34,23 @@ const Register = () => {
             margin="normal"
             required
             fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            autoFocus
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             id="email"
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

@@ -11,17 +11,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('https://connections-api.herokuapp.com/users/login', { email, password });
-      localStorage.setItem('token', data.token);
-      navigate('/contacts');
+      const response = await axios.post('https://connections-api.herokuapp.com/users/login', { email, password });
+      if (response.status === 200) {
+        localStorage.setItem('token', response.data.token);
+        navigate('/contacts');
+      }
     } catch (error) {
       console.error(error);
+      alert('Login failed: ' + error.response.data.message);
     }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper elevation={3} sx={{ padding: 3, marginTop: 8 }}>
+    <Container component="main" maxWidth="xs" sx={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Paper elevation={3} sx={{ padding: 3, width: '100%' }}>
         <Typography component="h1" variant="h5" align="center" sx={{ mb: 2 }}>
           Login
         </Typography>
