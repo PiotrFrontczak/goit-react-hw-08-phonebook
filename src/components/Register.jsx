@@ -21,7 +21,10 @@ const Register = () => {
         },
       });
       console.log('Response:', response);
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
+        // Optionally store the token if you need it for further requests
+        localStorage.setItem('token', response.data.token);
+        // Navigate to login or contacts page
         navigate('/login');
       }
     } catch (error) {
