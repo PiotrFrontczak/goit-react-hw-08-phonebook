@@ -12,7 +12,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = { name, email, password };
-    console.log('Sending user data:', JSON.stringify(userData));
+    console.log('Sending user data:', userData);
 
     try {
       const response = await axios.post('https://connections-api.herokuapp.com/users/signup', userData, {
@@ -27,10 +27,7 @@ const Register = () => {
     } catch (error) {
       if (error.response) {
         console.error('Full error response:', error.response);
-        console.log('Error data:', error.response.data);
-        console.log('Error status:', error.response.status);
-        console.log('Error headers:', error.response.headers);
-        alert('Registration failed: ' + (error.response.data.message || 'Unknown error'));
+        alert('Registration failed: ' + JSON.stringify(error.response.data));
       } else {
         console.error('Error:', error.message);
         alert('Registration failed: ' + error.message);
