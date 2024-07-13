@@ -15,17 +15,26 @@ const Register = () => {
     console.log('Sending user data:', userData);
 
     try {
-      const response = await axios.post('https://connections-api.herokuapp.com/users/signup', userData);
+      const response = await axios.post('https://connections-api.herokuapp.com/users/signup', userData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       console.log('Response:', response);
       if (response.status === 201) {
         navigate('/login');
       }
     } catch (error) {
-      console.error('Full error response:', error.response);
-      console.log('Error data:', error.response.data);
-      console.log('Error status:', error.response.status);
-      console.log('Error headers:', error.response.headers);
-      alert('Registration failed: ' + (error.response?.data?.message || 'Unknown error'));
+      if (error.response) {
+        console.error('Full error response:', error.response);
+        console.log('Error data:', error.response.data);
+        console.log('Error status:', error.response.status);
+        console.log('Error headers:', error.response.headers);
+        alert('Registration failed: ' + (error.response.data.message || 'Unknown error'));
+      } else {
+        console.error('Error:', error.message);
+        alert('Registration failed: ' + error.message);
+      }
     }
   };
 
