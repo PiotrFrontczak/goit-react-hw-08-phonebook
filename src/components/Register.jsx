@@ -27,7 +27,7 @@ const Register = () => {
     } catch (error) {
       if (error.response) {
         console.error('Full error response:', error.response);
-        alert('Registration failed: ' + JSON.stringify(error.response.data));
+        alert('Registration failed: ' + (error.response.data.message || 'Unknown error'));
       } else {
         console.error('Error:', error.message);
         alert('Registration failed: ' + error.message);
