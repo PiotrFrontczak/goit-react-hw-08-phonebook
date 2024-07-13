@@ -11,8 +11,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userData = { name, email, password };
+    console.log('Sending user data:', userData);
     try {
-      const response = await axios.post('https://connections-api.herokuapp.com/users/signup', { name, email, password });
+      const response = await axios.post('https://connections-api.herokuapp.com/users/signup', userData);
       if (response.status === 201) {
         navigate('/login');
       }
