@@ -11,7 +11,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://connections-api.herokuapp.com/users/login', { email, password });
+      const response = await axios.post('https://connections-api.goit.global/users/login', { email, password });
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
         navigate('/contacts');

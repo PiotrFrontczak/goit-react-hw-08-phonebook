@@ -15,7 +15,7 @@ const Contacts = () => {
       }
 
       try {
-        const { data } = await axios.get('https://connections-api.herokuapp.com/contacts', {
+        const { data } = await axios.get('https://connections-api.goit.global/docs/10:45#/Contact/get_contacts', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setContacts(data);
