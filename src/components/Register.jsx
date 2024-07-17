@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {
-  TextField,
-  Button,
-  Container,
-  Typography,
-  Box,
-  Paper,
-  Alert,
-} from "@mui/material";
+import { TextField, Button, Container, Typography, Box, Paper, Alert } from "@mui/material";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -21,24 +13,15 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const userData = {
-      name,
-      email,
-      password,
-    };
+    const userData = { name, email, password };
 
     try {
-      await axios.post(
-        "https://connections-api.herokuapp.com/users/signup",
-        userData,
-      );
+      await axios.post("https://connections-api.goit.global/users/signup", userData);
       navigate("/login");
     } catch (error) {
       if (error.response && error.response.data) {
         if (error.response.data.code === 11000) {
-          setError(
-            "This email is already registered. Please use a different email.",
-          );
+          setError("This email is already registered. Please use a different email.");
         } else {
           setError(error.response.data.message);
         }
@@ -59,7 +42,8 @@ const Register = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-      }}>
+      }}
+    >
       <Paper elevation={3} sx={{ padding: 3, width: "100%" }}>
         <Typography component="h1" variant="h5" align="center" sx={{ mb: 2 }}>
           Register
@@ -109,7 +93,8 @@ const Register = () => {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ mt: 3, mb: 2 }}>
+            sx={{ mt: 3, mb: 2 }}
+          >
             Register
           </Button>
         </Box>
