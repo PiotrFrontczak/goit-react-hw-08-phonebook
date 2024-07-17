@@ -29,7 +29,7 @@ const Register = () => {
 
     try {
       await axios.post(
-        "https://connections-api.goit.global/docs/10:45#/User/post_users_signup",
+        "https://connections-api.herokuapp.com/users/signup",
         userData,
       );
       navigate("/login");

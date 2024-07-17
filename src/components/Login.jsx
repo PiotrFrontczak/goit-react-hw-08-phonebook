@@ -18,7 +18,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error(error);
-      alert('Login failed: ' + error.response.data.message);
+      alert('Login failed: ' + (error.response?.data?.message || 'Unknown error'));
     }
   };
 
