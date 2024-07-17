@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {
-  TextField,
-  Button,
-  Container,
-  Typography,
-  Box,
-  Paper,
-  Alert,
+import {TextField, Button, Container, Typography, Box, Paper, Alert,
 } from "@mui/material";
 
 const Register = () => {
