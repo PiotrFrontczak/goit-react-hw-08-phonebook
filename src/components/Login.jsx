@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Container, Typography, Box, Paper } from '@mui/material';
+import { TextField, Button, Container, Typography, Box, Paper, Alert } from '@mui/material';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       const response = await axios.post('https://connections-api.goit.global/users/login', { email, password });
       if (response.status === 200) {
@@ -17,8 +19,9 @@ const Login = () => {
         navigate('/contacts');
       }
     } catch (error) {
-      console.error(error);
-      alert('Login failed: ' + (error.response?.data?.message || 'Unknown error'));
+      console.error('Error:', error);
+      console.error('Error response data:', error.response?.data);
+      setError(error.response?.data?.message || 'Login failed. Please try again.');
     }
   };
 
@@ -28,6 +31,7 @@ const Login = () => {
         <Typography component="h1" variant="h5" align="center" sx={{ mb: 2 }}>
           Login
         </Typography>
+        {error && <Alert severity="error">{error}</Alert>}
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             variant="outlined"
